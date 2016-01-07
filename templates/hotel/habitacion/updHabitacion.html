@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+	Acualizar habitación
+{% endblock title %}
+
+{% block contenido %}
+	<div class="page-header">
+		<h4>
+			<a href="{% url 'hotel_app:habitacion' %}" class="btn btn-success">
+				<span class="glyphicon glyphicon-chevron-left"></span>Regresar
+			</a>
+			<strong> Actualiza datos</strong>
+		</h4>
+	</div>{# page-header #}
+	<form action="" method="post">
+	{% csrf_token %}
+	    {{form.as_p}}
+	    <button type="submit/button" class="btn btn-success pull-right">Guardar cambios<span class="glyphicon glyphicon-chevron-right"></span></button>
+	</form>
+{% endblock contenido %}

@@ -2,25 +2,7 @@
 {% block titulo %}
 	Lista huesped
 {% endblock titulo %}
-{% block mijs %}
-	<script>
 
-$('#buscador').keyup(function(e){
- consulta = $("#buscador").val();
- $.ajax({
- data: {'dni': consulta},
- url: '',
- type: 'get',
- success : function(data) {
-         console.log(data[0].dni);
- },
- error : function(message) {
-         console.log(message);
-      }
- });
-});
-	</script>
-{% endblock mijs %}
 {% block contenido %}
 
 <div class="page-header">
@@ -28,7 +10,6 @@ $('#buscador').keyup(function(e){
 		<strong>
 			Tienes <span class="label label-warning">{{cantidad}}</span> huesped(es) registrado(s)
 		</strong>
-		<input type="text"  placeholder="Buscar..." id="buscador">
 
 		<a href="{% url 'perfiles_app:addHuesped' %}" class="btn btn-primary pull-right">
 			<span class="glyphicon glyphicon-plus">Nuevo registro</span>
