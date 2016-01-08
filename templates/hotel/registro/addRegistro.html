@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block titulo %}
+	Add registro
+{% endblock titulo %}
+
+{% block contenido %}
+	<div class="page-header">
+		<h4>
+			<a href="{% url 'hotel_app:registro' %}" class="btn btn-info">
+				<span class="glyphicon glyphicon-chevron-left"></span>Regresar
+			</a>
+			<strong>Nuevo registro</strong>
+		</h4>
+	</div>{# page-header #}
+	<div>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
+		</form>
+	</div>
+{% endblock contenido %}

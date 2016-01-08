@@ -20,15 +20,15 @@ class Habitacion(models.Model):
     
 class Registro(models.Model):
     form = (
-        ('E', 'Efectivo'),
-        ('T', 'Tarjeta'),
+        ('Efectivo', 'Efectivo'),
+        ('Tarjeta', 'Tarjeta'),
         )
     fec_ingreso=models.DateTimeField()
     huesped=models.ForeignKey(Huesped)
     habitacion=models.ForeignKey(Habitacion)
     fec_salida=models.DateTimeField()
     tarifa=models.CharField(max_length=6, verbose_name='Costo alojamiento')
-    forma_pago=models.CharField(choices=form, max_length=1)
+    forma_pago=models.CharField(choices=form, max_length=10)
 
     def __str__(self):
         return '%s %s | %s' % (self.huesped.nombre, self.huesped.apellidos, self.habitacion.numero)
