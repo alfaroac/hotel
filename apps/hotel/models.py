@@ -5,7 +5,7 @@ from apps.perfiles.models import Huesped
 
 class Habitacion(models.Model):
     tip = (
-        ('swb', 'Habitación Simple/Matrimonial'),
+        ('swb', 'Habitación Simple'),
         ('dwb', 'Habitación doble'),
         ('mat', 'Habitación triple/departamento'),
         )
@@ -16,7 +16,7 @@ class Habitacion(models.Model):
     estado = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.numero
+        return '%s | %s' %(self.numero, self.tipo)
     
 class Registro(models.Model):
     form = (
