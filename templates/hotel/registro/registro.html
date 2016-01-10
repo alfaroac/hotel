@@ -2,20 +2,44 @@
 {% block titulo %}
 	Registro
 {% endblock titulo %}
-
+{% block estilo %}
+{% endblock estilo %}
 {% block contenido %}
 
-<div class="page-header">
-	<h4>
-		<strong>
+<div class="">
+	<div class="col-sm-4">
+	<h4><strong>
 			Tienes <span class="label label-warning">{{cantidad}}</span> registro(s)
-		</strong>
+	</strong></h4>
+	</div>	
+	
+	<div class="col-sm-4"></div>
+	<!-- <div class="col-sm-4">
+	<form action="">
+		<div class="input-group">
+		  <input type="text" class="form-control">
+		  <span class="input-group-addon">
+	        <input type="submit" value="Buscar">		  	
+		  </span>
+		</div>
+	</form>
+	</div> -->
 
+	<!-- <form class="navbar-form navbar-left" role="search">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                          </div>
+                          <button type="submit" class="btn btn-default">Enviar</button>
+                        </form> -->
+	
+	
+	<div class="col-sm-4">
 		<a href="{% url 'hotel_app:addRegistro' %}" class="btn btn-primary pull-right">
 			<span class="glyphicon glyphicon-plus">Nuevo registro</span>
 		</a>
-	</h4>
+	</div>
 </div><!-- page-header -->
+<div class="page-header"></div>
 
 <div>
 	<table class="table table-striped table-condenced table-hover">

@@ -19,10 +19,15 @@
     <link rel="stylesheet" href="{% static "lib/css/jquery.dataTables.min.css" %}">
     <link rel="stylesheet" href="{% static "lib/css/dataTables.bootstrap.css" %}">
     <link rel="stylesheet" href="{% static "lib/css/select2.min.css" %}">
-    
     <!-- CSS App -->
     <link rel="stylesheet" href="{% static "lib/style.css" %}">
     <link rel="stylesheet" href="{% static "lib/themes/flat-blue.css" %}">
+    {% block estilo %}
+        
+    {% endblock estilo %}
+    <style>
+    /* body { padding-top: 70px; } */
+    </style>
     {% block mijs %}
         
     {% endblock mijs %}
@@ -40,6 +45,19 @@
                         <ol class="breadcrumb navbar-breadcrumb">
                             <li class="active">Dashboard</li>
                         </ol>
+
+                        <form class="navbar-form navbar-left" action="{% url 'perfiles_app:buscarDni' %}" method="POST">
+                        {% csrf_token %}
+                          <div class="form-group">
+                            <input type="text" name="buscalo" class="form-control" placeholder="Buscar por dni">
+                          </div>
+                          <div class="btn-group">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                          </div>
+                        </form>
+                     
+
+
                         <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
                         </button>
@@ -95,7 +113,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user.username|capfirst }}<span class="caret"></span></a>
                             <ul class="dropdown-menu animated fadeInDown">
                                 <li class="profile-img">
-                                    <img src="../media/profile/picjumbo.jpg" class="profile-img">
+                                    <img src="../media/profile/profile-1.jpg" height="300" width="300" class="profile-img">
                                 </li>
                                 <li>
                                     <div class="profile-info">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.template import RequestContext
+from django.views.generic import TemplateView
 #from django.contrib.auth.decorators import login_required
 from .forms import HuespedForm
 from .models import Huesped
@@ -51,3 +52,11 @@ def delHuesped(request, id, template_name = 'huesped/delHuesped.html'):
 		obj_delete.delete()
 		return redirect(reverse('perfiles_app:huesped'))
 	return render(request, template_name, {'object':obj_delete})
+
+
+class buscarPorDni(TemplateView):
+	def post(self, request, *args, **kwargs):
+		buscar=request.POST['buscalo']
+		huesped=Huesped.objects.filter(dni__contains=buscar)
+		return render(request,'huesped/buscarHuesped.html', {'huespedes':huesped})
+
