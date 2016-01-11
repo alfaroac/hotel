@@ -27,7 +27,7 @@
 		</h4>
 	</div>{# page-header #}
 	<div>
-		<form method="POST" enctype="multipart/form-data">
+		<form class="form-horizontal" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 
 			{% if forms.error %}
@@ -35,31 +35,49 @@
 				{{form.error}}
 			</div>						
 			{% endif %}
-			<div class="form-group">
-				<label>Fecha ingreso:</label>
 
-				Start Date:{{ form.fec_ingreso }}&nbsp;				
-			</div>					
+			
 			<div class="form-group">
-			   <label>Huesped</label>
-				{{form.huesped}}
-			</div>	
+		      <label class="col-sm-2 control-label">Fecha ingreso</label>
+		      <div class="col-sm-10">
+		        <input class="form-control" id="id_fec_ingreso" name="fec_ingreso" type="date">
+		      </div>
+		    </div>
+			
 			<div class="form-group">
-			    <label>Habitacion</label>
-				{{form.habitacion}}
-			</div>	
+		      <label class="col-sm-2 control-label">Huesped</label>
+		      <div class="col-sm-10">
+		        {{form.huesped}}
+		      </div>
+		    </div>
+
 			<div class="form-group">
-				<label for="">Fecha salida</label>
-				{{form.fec_salida}}
-			</div>
+		      <label class="col-sm-2 control-label">Huesped</label>
+		      <div class="col-sm-10">
+		        {{form.habitacion}}
+		      </div>
+		    </div>	
+				
 			<div class="form-group">
-				<label for="">Tarifa</label>
-				{{form.tarifa}}
-			</div>
+		      <label class="col-sm-2 control-label">Fecha salida</label>
+		      <div class="col-sm-8">
+		        <input class="form-control" id="id_fec_salida" name="fec_salida" type="date">
+		      </div>
+		    </div>
+			
 			<div class="form-group">
-				<label for="">Forma de pago</label>
-				{{form.forma_pago}}
-			</div>
+		      <label class="col-sm-2 control-label">Costo de alojamiento</label>
+		      <div class="col-sm-10">
+		        {{form.tarifa}}
+		      </div>
+		    </div>
+
+		    <div class="form-group">
+		      <label class="col-sm-2 control-label">Forma de pago</label>
+		      <div class="col-sm-10">
+		        {{form.forma_pago}}
+		      </div>
+		    </div>
 
 			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
 		</form>

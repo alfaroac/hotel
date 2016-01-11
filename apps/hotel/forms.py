@@ -17,6 +17,7 @@ class RegistroForm(forms.ModelForm):
 		model=Registro
 		fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
  		exclude=()
+       
 
 	#def __init__(self, *args, **kwargs):
 	#	super(RegistroForm, self).__init__(*args, **kwargs)

@@ -27,8 +27,8 @@ class Registro(models.Model):
     huesped=models.ForeignKey(Huesped)
     habitacion=models.ForeignKey(Habitacion)
     fec_salida=models.DateTimeField()
-    tarifa=models.CharField(max_length=6, verbose_name='Costo alojamiento')
-    forma_pago=models.CharField(choices=form, max_length=10)
+    tarifa=models.CharField(max_length=6)
+     =models.CharField(choices=form, max_length=10)
 
     def __str__(self):
         return '%s %s | %s' % (self.huesped.nombre, self.huesped.apellidos, self.habitacion.numero)
