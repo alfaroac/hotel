@@ -25,20 +25,20 @@ class RegistroForm(forms.ModelForm):
 	#	self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
 
 
-class DatePicker(forms.DateInput):
-    template_name = 'hotel/registro/addRegistro.html'
+# class DatePicker(forms.DateInput):
+#     template_name = 'hotel/registro/addRegistro.html'
 
-    class Media:
-        js = (
-            'js/jquery.min.js',
-            'js/jquery-ui.min.js',
-        )
-        css = {
-            'all': (
-                'css/jquery-ui.css',
-            )
-        }
+#     class Media:
+#         js = (
+#             'js/jquery.min.js',
+#             'js/jquery-ui.min.js',
+#         )
+#         css = {
+#             'all': (
+#                 'css/jquery-ui.css',
+#             )
+#         }
 
 
-class DateForm(forms.Form):
-    date = forms.DateField(widget=DatePicker)
+# class DateForm(forms.Form):
+#     date = forms.DateField(widget=DatePicker)

@@ -45,5 +45,5 @@ class Huesped(models.Model):
     # imagen = models.ImageField(upload_to='perfiles')
 
     def __str__(self):
-        return '%s %s' % (self.nombre, self.apellidos)
+        return '%s %s |%s' % (self.nombre, self.apellidos, self.dni)
     

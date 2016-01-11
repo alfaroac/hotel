@@ -19,16 +19,13 @@ class Habitacion(models.Model):
         return '%s | %s' %(self.numero, self.tipo)
     
 class Registro(models.Model):
-    form = (
-        ('Efectivo', 'Efectivo'),
-        ('Tarjeta', 'Tarjeta'),
-        )
+    
     fec_ingreso=models.DateTimeField()
     huesped=models.ForeignKey(Huesped)
     habitacion=models.ForeignKey(Habitacion)
     fec_salida=models.DateTimeField()
     tarifa=models.CharField(max_length=6)
-     =models.CharField(choices=form, max_length=10)
+    forma_pago =models.CharField(max_length=10)
 
     def __str__(self):
         return '%s %s | %s' % (self.huesped.nombre, self.huesped.apellidos, self.habitacion.numero)
