@@ -3,18 +3,7 @@
 	Add registro
 {% endblock titulo %}
 {% block mijs %}
-<script type="text/javascript">
-  $(document).ready(function() {
-    // Checking support for <input type="date"> using Modernizr:
-    // http://modernizr.com/
-    if (!Modernizr.inputtypes.date) {
-      var options = {
-        dateFormat: 'yy-mm-dd'
-      };
-      $('#{{ form.fec_ingreso.id }}').datepicker(options);
-    }
-  });
-</script>
+
 {% endblock mijs %}
 {% block contenido %}
 <div class="container">
@@ -27,42 +16,64 @@
 		</h4>
 	</div>{# page-header #}
 	<div>
-		<form method="POST" enctype="multipart/form-data">
+		<form class="" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 
-			{% if forms.error %}
+			{% if form.error %}
 			<div class="alert alert-danger" role="alert">
 				{{form.error}}
 			</div>						
 			{% endif %}
-			<div class="form-group">
-				<label>Fecha ingreso:</label>
 
-				Start Date:{{ form.fec_ingreso }}&nbsp;				
-			</div>					
-			<div class="form-group">
-			   <label>Huesped</label>
-				{{form.huesped}}
-			</div>	
-			<div class="form-group">
-			    <label>Habitacion</label>
-				{{form.habitacion}}
-			</div>	
-			<div class="form-group">
-				<label for="">Fecha salida</label>
-				{{form.fec_salida}}
+			<div class="row">
+		      <div class="col-sm-4">
+		        <label >Fecha de ingreso</label>
+		        <input class="form-control" id="id_fec_ingreso" name="fec_ingreso" type="date">
+		      </div>
+
+		      <div class="col-sm-4">
+		        <label >Huesped</label>
+		        <div>
+		        {{form.huesped}}
+		        </div>
+		      </div>
+
+		      <div class="col-sm-4">
+		        <label>Habitación</label>
+		        <div>
+		        {{form.habitacion}}
+		        </div>
+		      </div>		      
+		    </div>
+			
+			<div class="row">
+			<div class="col-sm-4">
+		        <label >Fecha de Salida</label>
+		        <input class="form-control" id="id_fec_salida" name="fec_salida" type="date">
+		    </div>
+
+
+			<div class="col-sm-4">
+                <label>Tipo de Pago :</label> 
+                <select id="id_forma_pago" name="forma_pago" class="form-control">
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                </select>
+            </div>
+
+			<div class="col-sm-4">
+			<label>Costo de alojamiento</label>
+		    <div class="input-group">
+			  <span class="input-group-addon">S/. $</span>
+			  <input type="number" class="form-control" id="id_tarifa" name="tarifa" aria-label="Amount (to the nearest dollar)">
+			  <span class="input-group-addon">.00</span>
 			</div>
-			<div class="form-group">
-				<label for="">Tarifa</label>
-				{{form.tarifa}}
-			</div>
-			<div class="form-group">
-				<label for="">Forma de pago</label>
-				{{form.forma_pago}}
 			</div>
 
-			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
+		    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
+			
 		</form>
+
 	</div>
 </div>
 {% endblock contenido %}

@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^main/', include('apps.perfiles.urls')),
     url(r'^perfiles/', include('apps.perfiles.urls', namespace='perfiles_app')),
     url(r'^hotel/', include('apps.hotel.urls', namespace='hotel_app')),
-    url(r'^cerrar/$', 'django.contrib.auth.views.logout_then_login',name='logout'),
+    url(r'^cerrar/', 'django.contrib.auth.views.logout_then_login',name='logout'),
     #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT,}),
 ]

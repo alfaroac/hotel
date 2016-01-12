@@ -53,8 +53,8 @@
 
                         <form class="navbar-form navbar-left" action="{% url 'perfiles_app:buscarDni' %}" method="POST">
                         {% csrf_token %}
-                          <div class="form-group">
-                            <input type="text" name="buscalo" class="form-control" placeholder="Buscar por dni">
+                          <div class="form-group ">
+                            <input type="text" name="buscalo" class="form-control" placeholder="Buscar huesped por DNI">
                           </div>
                           <div class="btn-group">
                             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
