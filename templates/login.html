@@ -3,7 +3,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Pure CSS Blurred Video Background Login Box. (fork)</title>    
+    <title>Gestion Hotel</title>    
     
         <link rel="stylesheet" href="{% static "css/style.css" %}">    
     
@@ -12,22 +12,23 @@
   <body>
 
   <div class="vid-container">
-  <video id="Video1" class="bgvid back" autoplay="false" muted="muted" preload="auto" loop>
+ 
+    <div class="inner-container">
+      <video id="Video2" class="bgvid inner" autoplay="false" muted="muted" preload="auto" loop>
       <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-  </video>
-  <div class="inner-container">
-    <video id="Video2" class="bgvid inner" autoplay="false" muted="muted" preload="auto" loop>
-      <source src="http://shortcodelic1.manuelmasiacsasi.netdna-cdn.com/themes/geode/wp-content/uploads/2014/04/milky-way-river-1280hd.mp4.mp4" type="video/mp4">
-    </video>
-    <div class="box">
-      <form method="post">
-      {% csrf_token %}
-        <h1>Login</h1>
+      </video>
+    
+
+      <div class="box">
+        <form method="post">
+        {% csrf_token %}
+        <h1>.:: Antawara Inn ::.</h1>
         <input type="text" id="username" name="username" placeholder="Username"/>
         <input type="password" name="password" id="password" placeholder="Password"/>
-        <button type="submit">Login</button>
-        <p>Not a member? <span>Sign Up</span></p>
-      </form>
-    </div>
+        <button type="submit">Ingresar</button>
+        <p>Ⓒ A&A Sistemas 2016<span> Juliaca - Peru</span></p>
+        </form>
+      </div>
   </div>
-</div>
+  </body>
+  </html>

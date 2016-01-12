@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from .models import Huesped
 
 class HuespedForm(forms.ModelForm):
-	class Meta:
-		model=Huesped
- 		exclude=()
- 		
+    class Meta:
+        model=Huesped
+        exclude=()
+        

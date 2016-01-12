@@ -7,21 +7,21 @@ from django.contrib.admin import widgets
 
 
 class HabitacionForm(forms.ModelForm):
-	class Meta:
-		model=Habitacion
- 		exclude=()
+    class Meta:
+        model=Habitacion
+        exclude=()
 
- 		
+        
 class RegistroForm(forms.ModelForm):
-	class Meta:
-		model=Registro
-		fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
- 		exclude=()
+    class Meta:
+        model=Registro
+        fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
+        exclude=()
 
-	#def __init__(self, *args, **kwargs):
-	#	super(RegistroForm, self).__init__(*args, **kwargs)
-	#	self.fields['fec_ingreso'].widget = widgets.AdminSplitDateTime()
-	#	self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
+    #def __init__(self, *args, **kwargs):
+    #   super(RegistroForm, self).__init__(*args, **kwargs)
+    #   self.fields['fec_ingreso'].widget = widgets.AdminSplitDateTime()
+    #   self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
 
 
 class DatePicker(forms.DateInput):
