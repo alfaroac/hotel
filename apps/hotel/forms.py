@@ -14,10 +14,20 @@ class HabitacionForm(forms.ModelForm):
         
 class RegistroForm(forms.ModelForm):
 
-    class Meta:
-        model=Registro
-        fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
-        exclude=()
+	class Meta:
+		model=Registro
+		fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
+ 		exclude=()
+  #     widgets={
+		#'fec_ingreso':forms.TextInput(attrs={'class':'form-control col-md-6'}),
+		# 'nameInstitution':forms.TextInput(attrs={'class':'form-control'}),
+		# 'address':forms.TextInput(attrs={'class':'form-control'}),
+		# 'latitude':forms.TextInput(attrs={'class':'form-control'}),
+		# 'longitude':forms.TextInput(attrs={'class':'form-control'}),
+		# 'state':forms.CheckboxInput(attrs={'class':'form-control'}),
+		# }
+
+
 
     #def __init__(self, *args, **kwargs):
     #   super(RegistroForm, self).__init__(*args, **kwargs)

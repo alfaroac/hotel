@@ -30,15 +30,12 @@ class Personal(models.Model):
 
 
 class Huesped(models.Model):
-    SEX = (
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-    )
+  
     nombre = models.CharField(max_length=40)
     apellidos = models.CharField(max_length=70)
     dni = models.CharField(max_length=8)
     fecha_nac = models.DateTimeField(verbose_name='Fecha de Nacimiento')
-    sexo = models.CharField(choices=SEX, max_length=255, blank=True, verbose_name='Género')
+    sexo = models.CharField(max_length=9, blank=True)
     telefono = models.CharField(max_length=13)
     nacionalidad = models.CharField(max_length=40)
     procedencia = models.CharField(max_length=40)

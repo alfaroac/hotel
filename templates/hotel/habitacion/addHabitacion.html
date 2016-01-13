@@ -4,6 +4,7 @@
 {% endblock titulo %}
 
 {% block contenido %}
+<div class="container">
 	<div class="page-header">
 		<h4>
 			<a href="{% url 'hotel_app:habitacion' %}" class="btn btn-info">
@@ -15,8 +16,34 @@
 	<div>
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			{{form.as_p}}
+			<div class="row">
+				<div class="col-sm-4">
+			        <label >Número:</label>
+			        <input class="form-control" id="id_numero" name="numero" type="text">
+			    </div>
+			    <div class="col-sm-4">
+			        <label >Piso:</label>
+			        <input class="form-control" id="id_piso" name="piso" type="number">
+			    </div>
+			    <div class="col-sm-4">
+			        <label >Tipo:</label>
+			        <div>
+			        {{form.tipo}}
+			        </div>
+		      	</div>
+		    </div>
+		    <div class="row">
+		      	<div class="col-sm-4">
+			        <label >Descripción:</label>			        
+			        <textarea name="descripcion" id="id_descripcion" class="form-control" cols="30" rows="3"></textarea>
+			    </div>
+			    <div class="col-sm-4">
+			        <label >Estado:</label>
+			        <input class="form-control" id="id_estado" name="estado" type="checkbox">
+			    </div>
+			</div>
 			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
 		</form>
 	</div>
+</div>
 {% endblock contenido %}
