@@ -7,18 +7,19 @@ from django.contrib.admin import widgets
 
 
 class HabitacionForm(forms.ModelForm):
-	class Meta:
-		model=Habitacion
- 		exclude=()
+    class Meta:
+        model=Habitacion
+        exclude=()
 
- 		
+        
 class RegistroForm(forms.ModelForm):
+
 	class Meta:
 		model=Registro
 		fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
  		exclude=()
   #      	widgets={
-		# 'codeInstitution':forms.TextInput(attrs={'class':'form-control col-md-6'}),
+		#'fec_ingreso':forms.TextInput(attrs={'class':'form-control col-md-6'}),
 		# 'nameInstitution':forms.TextInput(attrs={'class':'form-control'}),
 		# 'address':forms.TextInput(attrs={'class':'form-control'}),
 		# 'latitude':forms.TextInput(attrs={'class':'form-control'}),
@@ -26,11 +27,12 @@ class RegistroForm(forms.ModelForm):
 		# 'state':forms.CheckboxInput(attrs={'class':'form-control'}),
 		# }
 
-	#def __init__(self, *args, **kwargs):
-	#	super(RegistroForm, self).__init__(*args, **kwargs)
-	#	self.fields['fec_ingreso'].widget = widgets.AdminSplitDateTime()
-	#	self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
 
+
+    #def __init__(self, *args, **kwargs):
+    #   super(RegistroForm, self).__init__(*args, **kwargs)
+    #   self.fields['fec_ingreso'].widget = widgets.AdminSplitDateTime()
+    #   self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
 
 # class DatePicker(forms.DateInput):
 #     template_name = 'hotel/registro/addRegistro.html'
