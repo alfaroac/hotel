@@ -4,6 +4,7 @@
 {% endblock title %}
 
 {% block contenido %}
+<div class="container">
 	<div class="page-header">
 		<h4>
 			<a href="{% url 'perfiles_app:huesped' %}" class="btn btn-success">
@@ -17,4 +18,5 @@
 	    {{form.as_p}}
 	    <button type="submit/button" class="btn btn-success pull-right">Guardar cambios<span class="glyphicon glyphicon-chevron-right"></span></button>
 	</form>
+</div>
 {% endblock contenido %}
