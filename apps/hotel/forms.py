@@ -34,8 +34,3 @@ class RegistroForm(forms.ModelForm):
         'forma_pago':forms.Select(attrs={'class':'form-control'}),
         }
 
-
-# class RegistroFormp(forms.ModelForm):
-
-#     class Meta:
-# 	    nombre = forms.CharField(max_length=15)
