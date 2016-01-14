@@ -5,49 +5,37 @@ from django.forms.extras.widgets import SelectDateWidget
 from django.contrib.admin import widgets
 
 
-
 class HabitacionForm(forms.ModelForm):
-    class Meta:
-        model=Habitacion
-        exclude=()
 
-        
+    class Meta:
+        model = Habitacion
+        exclude = ()
+        widgets = {
+        'numero':forms.TextInput(attrs={'class':'form-control col-sm-4'}),
+        'piso':forms.TextInput(attrs={'class':'form-control col-sm-4'}),
+        'tipo':forms.Select(attrs={'class':'form-control col-sm-4'}),
+        'descripcion':forms.Textarea(attrs={'class':'form-control col-sm-4', 'cols':'30', 'rows':'3'}),
+        'estado':forms.Select(attrs={'class':'form-control col-sm-4'}),        
+        }
+
+
 class RegistroForm(forms.ModelForm):
 
-	class Meta:
-		model=Registro
-		fields = ['fec_ingreso', 'huesped', 'habitacion','fec_salida','tarifa','forma_pago']
- 		exclude=()
-  #      	widgets={
-		#'fec_ingreso':forms.TextInput(attrs={'class':'form-control col-md-6'}),
-		# 'nameInstitution':forms.TextInput(attrs={'class':'form-control'}),
-		# 'address':forms.TextInput(attrs={'class':'form-control'}),
-		# 'latitude':forms.TextInput(attrs={'class':'form-control'}),
-		# 'longitude':forms.TextInput(attrs={'class':'form-control'}),
-		# 'state':forms.CheckboxInput(attrs={'class':'form-control'}),
-		# }
+    class Meta:
+        model = Registro
+        exclude = ()
+       	widgets={
+        #'fec_ingreso':forms.SelectDateWidget(),DateField(initial=datetime.date.today)
+        'fec_ingreso':forms.DateInput(attrs={'class':'form-control','type':'date'}),
+        'huesped':forms.Select(attrs={'class':'form-control'}),
+        'habitacion':forms.Select(attrs={'class':'form-control'}),
+        'fec_salida':forms.DateInput(attrs={'class':'form-control','type':'date'}),
+        'tarifa':forms.NumberInput(attrs={'class':'form-control'}),
+        'forma_pago':forms.Select(attrs={'class':'form-control'}),
+        }
 
 
+# class RegistroFormp(forms.ModelForm):
 
-    #def __init__(self, *args, **kwargs):
-    #   super(RegistroForm, self).__init__(*args, **kwargs)
-    #   self.fields['fec_ingreso'].widget = widgets.AdminSplitDateTime()
-    #   self.fields['fec_salida'].widget = widgets.AdminSplitDateTime()
-
-# class DatePicker(forms.DateInput):
-#     template_name = 'hotel/registro/addRegistro.html'
-
-#     class Media:
-#         js = (
-#             'js/jquery.min.js',
-#             'js/jquery-ui.min.js',
-#         )
-#         css = {
-#             'all': (
-#                 'css/jquery-ui.css',
-#             )
-#         }
-
-
-# class DateForm(forms.Form):
-#     date = forms.DateField(widget=DatePicker)
+#     class Meta:
+# 	    nombre = forms.CharField(max_length=15)

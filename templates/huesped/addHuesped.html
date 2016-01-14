@@ -7,55 +7,80 @@
 <div class="container">
 	<div class="page-header">
 		<h4>
-			<a href="{% url 'perfiles_app:huesped' %}" class="btn btn-info">
-				<span class="glyphicon glyphicon-chevron-left"></span>Regresar
+			<a href="#">
+				<span class="fa fa-info-circle fa-lg"></span>
 			</a>
-			<strong>Registrar huesped</strong>
+			<strong>Registrar un nuevo huesped</strong>
 		</h4>
 	</div>{# page-header #}
-	<div>
-		<form method="POST" enctype="multipart/form-data">
+	<form class="" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 
+			{% if form.error %}
+			<div class="alert alert-danger" role="alert">
+				{{form.error}}
+			</div>						
+			{% endif %}
+
 			<div class="row">
+		      <div class="col-sm-4">
+		        <label >Nombres</label>
+		        {{form.nombre}}
+		      </div>
+
+		      <div class="col-sm-4">
+		        <label >Apellidos</label>
+		        {{form.apellidos}}
+		      </div>
+
+		      <div class="col-sm-4">
+		        <label >DNI</label>
+		        {{form.dni}}
+		      </div>
+
+		    </div>
+		    <div class="row">
+
+			    <div class="col-sm-4">
+			        <label >Fecha de nacimiento</label>
+			        <div>
+			        {{form.fecha_nac}}
+			        </div>
+			    </div>
+
+			    <div class="col-sm-4">
+			        <label>Género</label>
+			        {{form.sexo}}
+			    </div>	
+
 				<div class="col-sm-4">
-			        <label >Nombres:</label>
-			        <input class="form-control" id="id_nombre" name="nombre" type="text">
+			        <label >Telefono/Celular</label>
+			        {{form.telefono}}
 			    </div>
-			 	<div class="col-sm-4">
-			        <label >Apellidos:</label>
-			        <input class="form-control" id="id_apellidos" name="apellidos" type="text">
-			    </div>
-			    <div class="col-sm-4">
-			        <label >DNI:</label>
-			        <input class="form-control" id="id_dni" name="dni" type="number">
-			    </div>
-			    <div class="col-sm-4">
-			        <label >Fecha de Nacimiento:</label>
-			        <input class="form-control" id="id_fecha_nac" name="fecha_nac" type="date">
-			    </div>
-			    <div class="col-sm-4">
-	                <label>Género:</label> 
-	                <select id="id_sexo" name="sexo" class="form-control">
-	                    <option value="M">Masculino</option>
-	                    <option value="F">Femenino</option>
-	                </select>
-	            </div>
-	            <div class="col-sm-4">
-			        <label>Teléfono:</label>
-			        <input class="form-control" id="id_telefono" name="telefono" type="text">
-			    </div>
-			    <div class="col-sm-4">
-			        <label>Nacionalidad:</label>
-			        <input class="form-control" id="id_nacionalidad" name="nacionalidad" type="text">
-			    </div>
-			    <div class="col-sm-4">
-			        <label>Procedencia:</label>
-			        <input class="form-control" id="id_procedencia" name="procedencia" type="text">
-			    </div>
+ 			
+ 			</div>
+		    <div class="row">
+
+			<div class="col-sm-4">
+                <label>Nacionalidad :</label> 
+                {{form.nacionalidad}}
+            </div>
+
+			<div class="col-sm-4">
+				<label>Procedencia</label>
+			    {{form.procedencia}}
 			</div>
-			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
-		</form>
-	</div>
+			</div>
+			<div>
+			<div class="pull-right">
+		    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
+		    </div>
+		    <div class="btn-group pull-left">
+			    <a href="{% url 'perfiles_app:huesped' %}" class="btn btn-default">Ir a lista</a>
+			    <a href="{% url 'perfiles_app:main' %}" class="btn btn-primary ">Ir al inicio </a>
+		    </div>
+		    
+			</div>
+	</form>
 </div>
 {% endblock contenido %}

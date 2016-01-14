@@ -4,19 +4,57 @@
 {% endblock title %}
 
 {% block contenido %}
-<div class="container">
 	<div class="page-header">
 		<h4>
-			<a href="{% url 'hotel_app:habitacion' %}" class="btn btn-success">
-				<span class="glyphicon glyphicon-chevron-left"></span>Regresar
+			<a href="#">
+				<span class="fa fa-info-circle fa-lg"></span>
 			</a>
-			<strong> Actualiza datos</strong>
+			<strong> Actualiza datos de la habitacion</strong>
 		</h4>
 	</div>{# page-header #}
 	<form action="" method="post">
 	{% csrf_token %}
-	    {{form.as_p}}
-	    <button type="submit/button" class="btn btn-success pull-right">Guardar cambios<span class="glyphicon glyphicon-chevron-right"></span></button>
+	    <div class="row">
+	    	<div class="col-sm-4">
+		        	<label >Número</label>
+			        <div>
+			        	{{form.numero}}
+			        </div>
+			    </div>
+			    <div class="col-sm-4">
+		        	<label >Piso</label>
+			        <div>
+			        	{{form.piso}}
+			        </div>
+			    </div>
+			    <div class="col-sm-4">
+		        	<label >Tipo</label>
+			        <div>
+			        	{{form.tipo}}
+			        </div>
+			    </div>
+			    </div>
+			   	<div class="row">
+			    <div class="col-sm-4">
+		        	<label >Descripcion</label>
+			        <div>
+			        	{{form.descripcion}}
+			        </div>
+			    </div>
+			    <div class="col-sm-4">
+		        	<label >Estado</label>
+			        <div>
+			        	{{form.estado}}
+			        </div>
+			    </div>
+	    </div>
+	    <div class="pull-left">
+	    <button type="submit/button" class="btn btn-success">Guardar cambios <span class="glyphicon glyphicon-save"></span></button>
+	    </div>
+	    <div class="btn-group pull-right">
+		    <a href="{% url 'perfiles_app:main' %}" class="btn btn-primary">Ir al inicio </a>
+		    <a href="{% url 'hotel_app:habitacion' %}" class="btn btn-default">Ir a lista habitación</a>
+		    <a href="{% url 'hotel_app:addRegistro' %}" class="btn btn-primary">Regitrar huesped </a>
+	    </div>
 	</form>
-</div>
 {% endblock contenido %}

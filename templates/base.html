@@ -38,10 +38,6 @@
         <div class="row content-container">
             <nav class="navbar navbar-default navbar-fixed-top navbar-top">
 
-<p>dfggdfgfdgdfdffdgfgdgd</p>
-<p>dfggdfgfdgdfdffdgfgdgd</p>
-
-
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-expand-toggle">
@@ -149,8 +145,8 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <a href="index.html">
-                                    <span class="icon fa fa-tachometer"></span><span class="title">Dashboard</span>
+                                <a href="{% url 'main' %}">
+                                    <span class="fa fa-home fa-2x"></span><span class="title">Home</span>
                                 </a>
                             </li>
                             <li class="panel panel-default dropdown">
@@ -343,9 +339,11 @@
                         </div>
                     </div> -->
                     <div class="row  no-margin-bottom">
+                    <div class="container">
                     {% block contenido %}
                       
                     {% endblock contenido %}
+                    </div>
                     </div>
                 </div>
             </div>

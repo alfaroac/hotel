@@ -17,32 +17,42 @@
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="row">
-				<div class="col-sm-4">
-			        <label >Número:</label>
-			        <input class="form-control" id="id_numero" name="numero" type="text">
-			    </div>
-			    <div class="col-sm-4">
-			        <label >Piso:</label>
-			        <input class="form-control" id="id_piso" name="piso" type="number">
-			    </div>
-			    <div class="col-sm-4">
-			        <label >Tipo:</label>
+		    	<div class="col-sm-4">
+		        	<label >Número</label>
 			        <div>
-			        {{form.tipo}}
+			        	{{form.numero}}
 			        </div>
-		      	</div>
-		    </div>
-		    <div class="row">
-		      	<div class="col-sm-4">
-			        <label >Descripción:</label>			        
-			        <textarea name="descripcion" id="id_descripcion" class="form-control" cols="30" rows="3"></textarea>
 			    </div>
 			    <div class="col-sm-4">
-			        <label >Estado:</label>
-			        <input class="form-control" id="id_estado" name="estado" type="checkbox">
+		        	<label >Piso</label>
+			        <div>
+			        	{{form.piso}}
+			        </div>
 			    </div>
-			</div>
-			<button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
+			    <div class="col-sm-4">
+		        	<label >Tipo</label>
+			        <div>
+			        	{{form.tipo}}
+			        </div>
+			    </div>
+			    </div>
+			    <div class="row">
+			    <div class="col-sm-4">
+		        	<label >Descripcion</label>
+			        <div>
+			        	{{form.descripcion}}
+			        </div>
+			    </div>
+			    <div class="col-sm-4">
+		        	<label >Estado</label>
+			        <div>
+			        	{{form.estado}}
+			        </div>
+			    </div>
+		    </div>
+		    <div>
+		    <button type="submit/button" class="btn btn-success pull-right">Guardar cambios<span class="glyphicon glyphicon-chevron-right"></span></button>
+		    </div>
 		</form>
 	</div>
 </div>

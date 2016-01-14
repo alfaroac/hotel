@@ -5,19 +5,14 @@ from django.views.generic import TemplateView
 #from django.contrib.auth.decorators import login_required
 from .forms import HuespedForm
 from .models import Huesped
+from apps.hotel.models import Habitacion
 from django.http import HttpResponse
 import json
 
 #@login_required
 def main(request):
-	return render(request, 'index.html')
-
-# def busqueda(request):
-#     if request.is_ajax(): 
-#     	objbuscado = Huesped.objects.filter(nombre__startswith= request.GET['nombre']).values('nombre', 'id','dni')
-#         return HttpResponse( json.dumps( list(objbuscado)), content_type='application/json') 
-#     else: 
-#         return HttpResponse("Solo Ajax")
+	lista=Habitacion.objects.all()
+	return render(request, 'index.html', {'lista':lista})
 
 
 def huesped(request):
@@ -30,7 +25,7 @@ def addHuesped(request):
 		objform=HuespedForm(request.POST)
 		if objform.is_valid():
 			objform.save()
-			return redirect(reverse('perfiles_app:huesped'))
+			return render(request,'huesped/addHuesped.html', {'form':objform})
 	else:
 		objform=HuespedForm()
 	return render(request,'huesped/addHuesped.html', {'form':objform})
@@ -41,7 +36,7 @@ def updHuesped(request, id):
 		objform=HuespedForm(request.POST,instance=objedit)
 		if objform.is_valid():
 			objform.save()
-			return redirect(reverse('perfiles_app:huesped'))
+			return render(request, 'huesped/updHuesped.html', {'form':objform}, context_instance=RequestContext(request))
 	else:
 		objform=HuespedForm(instance=objedit)
 	return render(request, 'huesped/updHuesped.html', {'form':objform}, context_instance=RequestContext(request))

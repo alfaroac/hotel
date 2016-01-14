@@ -30,7 +30,8 @@ def updHabitacion(request, id):
         objform=HabitacionForm(request.POST,instance=objedit)
         if objform.is_valid():
             objform.save()
-            return redirect(reverse('hotel_app:habitacion'))
+            #return redirect(reverse('perfiles_app:main'))
+            return render(request, 'hotel/habitacion/updHabitacion.html', {'form':objform}, context_instance=RequestContext(request))
     else:
         objform=HabitacionForm(instance=objedit)
     return render(request, 'hotel/habitacion/updHabitacion.html', {'form':objform}, context_instance=RequestContext(request))
@@ -44,7 +45,7 @@ def delHabitacion(request, id, template_name = 'hotel/habitacion/delHabitacion.h
 
 #registro
 def registro(request):
-    lista=Registro.objects.all()
+    lista=Registro.objects.all().order_by("fec_ingreso")
     numreg=lista.count()
     return render(request,'hotel/registro/registro.html', {'lista':lista, 'cantidad':numreg})
 
@@ -53,7 +54,7 @@ def addRegistro(request):
         objform=RegistroForm(request.POST)
         if objform.is_valid():
             objform.save()
-            return redirect(reverse('hotel_app:registro'))
+            return render(request,'hotel/registro/addRegistro.html', {'form':objform})
     else:
         objform=RegistroForm()
     return render(request,'hotel/registro/addRegistro.html', {'form':objform})

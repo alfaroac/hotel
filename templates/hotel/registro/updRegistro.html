@@ -13,12 +13,60 @@
 			<strong> Actualiza datos</strong>
 		</h4>
 	</div>{# page-header #}
-	<form class="" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
+<form class="" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
 
-			{{form.as_p}}
-		    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
-			
-		</form>
-</div>
+	{% if form.error %}
+	<div class="alert alert-danger" role="alert">
+		{{form.error}}
+	</div>						
+	{% endif %}
+
+	<div class="row">
+      <div class="col-sm-4">
+        <label >Fecha de ingreso</label>
+        {{form.fec_ingreso}}
+      </div>
+
+      <div class="col-sm-4">
+        <label >Huesped</label>
+        <div>
+        {{form.huesped}}{{filter}}
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <label>Habitación</label>
+        <div>
+        {{form.habitacion}}{{linenumbers}}
+        </div>
+      </div>	
+
+    </div>
+    <div class="row">
+    
+	<div class="col-sm-4">
+        <label >Fecha de Salida</label>
+        {{form.fec_salida}}
+    </div>
+
+    
+	<div class="col-sm-4">
+        <label>Forma de Pago :</label> 
+        {{form.forma_pago}}
+    </div>
+
+	<div class="col-sm-4">
+		<label>Costo de alojamiento</label>
+	    <div class="input-group">
+		  <span class="input-group-addon">S/. $</span>
+		  {{form.tarifa}}
+		  <span class="input-group-addon">.00</span>
+		</div>
+	</div>
+	</div>
+	<div>
+    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-chevron-right"></span></button>
+	</div>
+</form>
 {% endblock contenido %}

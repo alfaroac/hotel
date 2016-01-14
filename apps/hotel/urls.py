@@ -12,6 +12,7 @@ urlpatterns = [
    	url(r'^registro/upd/(?P<id>\d+)$','apps.hotel.views.updRegistro', name='updRegistro'),
    	url(r'^registro/del/(?P<id>\d+)$', 'apps.hotel.views.delRegistro', name='delRegistro'),
 
+    #url(r'^registro/add2/(?P<id>\d+)$','apps.hotel.views.addRegistrop', name='addRegistrop'),
 	#url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 
 ]
