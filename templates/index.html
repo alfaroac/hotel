@@ -23,17 +23,20 @@
         <div class="row">
       {% for room in lista %}          
             <div class="col-md-3">
-                <a href="{% url 'hotel_app:updHabitacion' room.pk %}">
                     {% ifequal  room.estado 'libre' %} 
+                    <a href="{% url 'hotel_app:updHabitacion' room.pk %}">
                     <div class="card green summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'reservado' %} 
+                    <a href="{% url 'hotel_app:addReserva'%}">
                     <div class="card white summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'ocupado' %} 
+                    <a href="{% url 'hotel_app:addReserva'%}">
                     <div class="card red summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'limpiar' %} 
+                    <a href="{% url 'hotel_app:updHabitacion' room.pk %}">
                     <div class="card blue summary-inline">
                     {% endifequal %}
                         <div class="card-body">
