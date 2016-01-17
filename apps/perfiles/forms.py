@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Huesped
+from .models import Huesped, Rol
 
 class HuespedForm(forms.ModelForm):
     class Meta:
@@ -16,4 +16,13 @@ class HuespedForm(forms.ModelForm):
         'telefono':forms.NumberInput(attrs={'class':'form-control'}),
         'nacionalidad':forms.TextInput(attrs={'class':'form-control'}),
         'procedencia':forms.TextInput(attrs={'class':'form-control'}),
+        }
+
+class RolesForm(forms.ModelForm):
+    class Meta:
+        model=Rol
+        exclude=()
+        widgets={
+        'rol':forms.TextInput(attrs={'class':'form-control'}),
+        'descripcion':forms.TextInput(attrs={'class':'form-control'}),
         }
