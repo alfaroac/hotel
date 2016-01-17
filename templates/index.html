@@ -28,11 +28,11 @@
                     <div class="card green summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'reservado' %} 
-                    <a href="{% url 'hotel_app:addReserva'%}">
+                    <a href="{% url 'hotel_app:addRegistro'%}">
                     <div class="card white summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'ocupado' %} 
-                    <a href="{% url 'hotel_app:addReserva'%}">
+                    <a href="{% url 'hotel_app:addRegistro'%}">
                     <div class="card red summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'limpiar' %} 
