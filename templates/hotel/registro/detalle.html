@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+	Acualizar registro
+{% endblock title %}
+
+{% block contenido %}
+<div class="container">
+	<div class="page-header">
+		<h4>
+			<a href="{% url 'hotel_app:registro' %}" class="btn btn-success">
+				<span class="glyphicon glyphicon-chevron-left"></span>Regresar
+			</a>
+			<strong>Detalle del huesped</strong>
+		</h4>
+	</div>{# page-header #}
+<div>
+	{{lista.huesped}}
+
+</div>
+{% endblock contenido %}

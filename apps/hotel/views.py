@@ -54,7 +54,7 @@ def addRegistro(request):
         objform=RegistroForm(request.POST)
         if objform.is_valid():
             objform.save()
-            return render(request,'hotel/registro/addRegistro.html', {'form':objform})
+            return redirect(reverse('perfiles_app:main'))
     else:
         objform=RegistroForm()
     return render(request,'hotel/registro/addRegistro.html', {'form':objform})
@@ -76,3 +76,12 @@ def delRegistro(request, id):
         objdel.delete()
         return redirect(reverse('hotel_app:registro'))
     return render(request, 'hotel/registro/delRegistro.html', {'object':objdel})
+
+# def detalleRegistro(request, id):
+#     obj = Registro.objects.get(pk=id)
+#     form = RegistroForm(instance=obj)
+#     return render(request, 'hotel/registro/detalle.html', {'form':form}, context_instance=RequestContext(request))
+
+def detalleRegistro(request, id):
+    lista=Registro.objects.get(pk=id)
+    return render(request,'hotel/registro/detalle.html', {'lista':lista})

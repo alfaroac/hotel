@@ -14,25 +14,6 @@
 	</div>	
 	
 	<div class="col-sm-4"></div>
-	<!-- <div class="col-sm-4">
-	<form action="">
-		<div class="input-group">
-		  <input type="text" class="form-control">
-		  <span class="input-group-addon">
-	        <input type="submit" value="Buscar">		  	
-		  </span>
-		</div>
-	</form>
-	</div> -->
-
-	<!-- <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Buscar">
-          </div>
-          <button type="submit" class="btn btn-default">Enviar</button>
-        </form> -->
-	
-	
 	<div class="col-sm-4">
 		<a href="{% url 'hotel_app:addRegistro' %}" class="btn btn-primary pull-right">
 			<span class="glyphicon glyphicon-plus">Nuevo registro</span>
@@ -64,7 +45,7 @@
 				<td>{{registro.tarifa}}</td>
 				<td>{{registro.forma_pago}}</td>
 				<td>
-					<a href="#" class="btn btn-success btn-xs"> <span class="glyphicon glyphicon-eye-open"></span></a>
+					<a href="{% url 'hotel_app:detalleRegistro' registro.pk %}" class="btn btn-success btn-xs"> <span class="glyphicon glyphicon-eye-open"></span></a>
 					<a href="{% url 'hotel_app:updRegistro' registro.pk %}" class="btn btn-warning btn-xs"> <span class="glyphicon glyphicon-pencil"></span></a>
 					<a href="{% url 'hotel_app:delRegistro' registro.pk %}" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-trash"></span></a>
 				</td>

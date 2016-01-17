@@ -8,9 +8,16 @@
 {% endblock estilos %}
 {% block contenido %}
 {% spaceless %}
-    <strong>
-	<h1 class="page-header">Bienvenidos al sistema de Hoteles </h1>        
-    </strong>
+    <div class="page-header">
+        <h2>
+            <strong>
+                Bienvenido al sistema "Antahuara INN SAC"
+            </strong>
+            <a href="{% url 'hotel_app:addRegistro' %}" class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-plus">Nuevo registro</span>
+            </a>
+        </h2>
+    </div><!-- page-header -->
 {% endspaceless %}
     {# {% lorem 3 p random %} #}
         <div class="row">
@@ -24,10 +31,10 @@
                     <div class="card white summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'ocupado' %} 
-                    <div class="card blue summary-inline">
+                    <div class="card red summary-inline">
                     {% endifequal %}
                     {% ifequal  room.estado 'limpiar' %} 
-                    <div class="card red summary-inline">
+                    <div class="card blue summary-inline">
                     {% endifequal %}
                         <div class="card-body">
                             <i class="icon fa fa-bed fa-3x"></i>

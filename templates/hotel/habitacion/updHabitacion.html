@@ -49,11 +49,11 @@
 			    </div>
 	    </div>
 	    <div class="pull-left">
-	    <button type="submit/button" class="btn btn-success">Guardar cambios <span class="glyphicon glyphicon-save"></span></button>
+		    <a href="{% url 'perfiles_app:main' %}" class="btn btn-default">Ir al inicio </a>
+		    <a href="{% url 'hotel_app:habitacion' %}" class="btn btn-default">Ir a lista habitación</a>
 	    </div>
 	    <div class="btn-group pull-right">
-		    <a href="{% url 'perfiles_app:main' %}" class="btn btn-primary">Ir al inicio </a>
-		    <a href="{% url 'hotel_app:habitacion' %}" class="btn btn-default">Ir a lista habitación</a>
+	    	<button type="submit/button" class="btn btn-success">Guardar cambios <span class="glyphicon glyphicon-save"></span></button>
 		    <a href="{% url 'hotel_app:addRegistro' %}" class="btn btn-primary">Regitrar huesped </a>
 	    </div>
 	</form>
