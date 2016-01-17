@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponse
 from django.template import RequestContext
 #from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import HabitacionForm, RegistroForm
 from .models import Habitacion, Registro
@@ -46,8 +47,19 @@ def delHabitacion(request, id, template_name = 'hotel/habitacion/delHabitacion.h
 #registro
 def registro(request):
     lista=Registro.objects.all().order_by("fec_ingreso")
+    paginator = Paginator(lista, 10) # Show 25 contacts per page
+    page = request.GET.get('page')
     numreg=lista.count()
-    return render(request,'hotel/registro/registro.html', {'lista':lista, 'cantidad':numreg})
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+
+    return render(request,'hotel/registro/registro.html', {'lista':contacts, 'cantidad':numreg})
 
 def addRegistro(request):
     if request.method=='POST':
@@ -84,4 +96,4 @@ def delRegistro(request, id):
 
 def detalleRegistro(request, id):
     lista=Registro.objects.get(pk=id)
-    return render(request,'hotel/registro/detalle.html', {'lista':lista})
+    return render(request,'hotel/registro/boleta.html', {'lista':lista})

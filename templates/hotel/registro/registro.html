@@ -53,6 +53,21 @@
 		{% endfor %}
 		</tbody>	
 	</table>
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if lista.has_previous %}
+	            <a href="?page={{ lista.previous_page_number }}" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-chevron-left"></span>previous</a>
+	        {% endif %}
 
+	        <span class="current">
+	            Page {{ lista.number }} of {{ lista.paginator.num_pages }}.
+	        </span>
+
+	        {% if lista.has_next %}
+	            <a href="?page={{ lista.next_page_number }}" class="btn btn-xs btn-info">next<span class="glyphicon glyphicon-chevron-right"></span></a>
+	        {% endif %}
+	    </span>
+	</div>
+	<br><br>
 </div>
 {% endblock contenido %}
