@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block titulo %}
-	Regitrar huesped
-{% endblock titulo %}
+{% block title %}
+	Acualizar huesped
+{% endblock title %}
 
 {% block contenido %}
 <div class="container">
@@ -10,7 +10,7 @@
 			<a href="#">
 				<span class="fa fa-info-circle fa-lg"></span>
 			</a>
-			<strong>Registrar un nuevo huesped</strong>
+			<strong> Actualiza datos</strong>
 		</h4>
 	</div>{# page-header #}
 	<form class="" method="POST" enctype="multipart/form-data">
@@ -76,7 +76,7 @@
 		    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
 		    </div>
 		    <div class="btn-group pull-left">
-			    <a href="{% url 'perfiles_app:roles' %}" class="btn btn-default">Ir a lista</a>
+			    <a href="{% url 'perfiles_app:huesped' %}" class="btn btn-default">Ir a lista</a>
 			    <a href="{% url 'perfiles_app:main' %}" class="btn btn-primary ">Ir al inicio </a>
 		    </div>
 		    

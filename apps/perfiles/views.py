@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.template import RequestContext
 from django.views.generic import TemplateView
 #from django.contrib.auth.decorators import login_required
-from .forms import HuespedForm
-from .models import Huesped
+from .forms import HuespedForm, RolesForm
+from .models import Huesped, Personal, Rol
 from apps.hotel.models import Habitacion
 from django.http import HttpResponse
 import json
@@ -55,3 +55,33 @@ class buscarPorDni(TemplateView):
 		huesped=Huesped.objects.filter(dni__contains=buscar)
 		return render(request,'huesped/buscarHuesped.html', {'huespedes':huesped})
 
+def listPersonal(request):
+	lista=Personal.objects.all()
+	cantidad = lista.count()
+	return render(request, 'personal/personal.html', {'lista':lista, 'cantidad':cantidad})
+
+def listRoles(request):
+	lista=Rol.objects.all()
+	cantidad = lista.count()
+	return render(request, 'rol/roles.html', {'lista':lista, 'cantidad':cantidad})
+
+def addRoles(request):
+	if request.method=='POST':
+		objform=RolesForm(request.POST)
+		if objform.is_valid():
+			objform.save()
+			return redirect(reverse('perfiles_app:roles'))
+	else:
+		objform=RolesForm()
+	return render(request,'rol/addRoles.html', {'form':objform})
+
+def updRoles(request, id):
+	objedit=Rol.objects.get(pk=id)
+	if request.method=='POST':
+		objform=RolesForm(request.POST,instance=objedit)
+		if objform.is_valid():
+			objform.save()
+			return render(request, 'rol/updRoles.html', {'form':objform}, context_instance=RequestContext(request))
+	else:
+		objform=RolesForm(instance=objedit)
+	return render(request, 'rol/updRoles.html', {'form':objform}, context_instance=RequestContext(request))

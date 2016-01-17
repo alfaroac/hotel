@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block titulo %}
-	Regitrar huesped
+	Regitrar Roles
 {% endblock titulo %}
 
 {% block contenido %}
@@ -10,7 +10,7 @@
 			<a href="#">
 				<span class="fa fa-info-circle fa-lg"></span>
 			</a>
-			<strong>Registrar un nuevo huesped</strong>
+			<strong>Registrar un nuevo rol</strong>
 		</h4>
 	</div>{# page-header #}
 	<form class="" method="POST" enctype="multipart/form-data">
@@ -24,53 +24,15 @@
 
 			<div class="row">
 		      <div class="col-sm-4">
-		        <label >Nombres</label>
-		        {{form.nombre}}
+		        <label >Rol</label>
+		        {{form.rol}}
 		      </div>
 
 		      <div class="col-sm-4">
-		        <label >Apellidos</label>
-		        {{form.apellidos}}
-		      </div>
-
-		      <div class="col-sm-4">
-		        <label >DNI</label>
-		        {{form.dni}}
-		      </div>
-
+		        <label >Descripción</label>
+		        {{form.descripcion}}
+		      </div>  
 		    </div>
-		    <div class="row">
-
-			    <div class="col-sm-4">
-			        <label >Fecha de nacimiento</label>
-			        <div>
-			        {{form.fecha_nac}}
-			        </div>
-			    </div>
-
-			    <div class="col-sm-4">
-			        <label>Género</label>
-			        {{form.sexo}}
-			    </div>	
-
-				<div class="col-sm-4">
-			        <label >Telefono/Celular</label>
-			        {{form.telefono}}
-			    </div>
- 			
- 			</div>
-		    <div class="row">
-
-			<div class="col-sm-4">
-                <label>Nacionalidad :</label> 
-                {{form.nacionalidad}}
-            </div>
-
-			<div class="col-sm-4">
-				<label>Procedencia</label>
-			    {{form.procedencia}}
-			</div>
-			</div>
 			<div>
 			<div class="pull-right">
 		    <button type="submit/button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
