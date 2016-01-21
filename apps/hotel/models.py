@@ -20,10 +20,29 @@ class Habitacion(models.Model):
     tipo = models.CharField(choices=tip, max_length=5,
                             blank=True, verbose_name='Tipo', default='swb')
     descripcion = models.TextField()
-    estado = models.CharField(choices=est, max_length=10, blank=True, default='libre')
+    estado = models.CharField(
+        choices=est, max_length=10, blank=True, default='libre')
+
+    class Meta:
+        verbose_name = "Habitacion"
+        verbose_name_plural = "Habitaciones"
 
     def __str__(self):
-        return '%s  Tipo: %s' % (self.numero, self.tipo)
+        return '%s  | %s' % (self.numero, self.tipo)
+
+
+class Empresa(models.Model):
+
+    razon_social = models.CharField(max_length=100)
+    ruc = models.CharField(max_length=11)
+    direccion = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "Empresa"
+        verbose_name_plural = "Empresas"
+
+    def __str__(self):
+        return self.razon_social
 
 
 class Registro(models.Model):
@@ -31,28 +50,38 @@ class Registro(models.Model):
         ('efectivo', 'Efectivo'),
         ('tarjeta', 'Tarjeta'),
     )
-
-    fec_ingreso = models.DateTimeField()
+    fec_registro = models.DateTimeField(auto_now_add=True)
+    fec_ingreso = models.DateField()
+    hora_ingreso = models.TimeField()
     huesped = models.ForeignKey(Huesped)
+    empresa = models.ForeignKey(Empresa, null=True)
     habitacion = models.ForeignKey(Habitacion)
-    fec_salida = models.DateTimeField()
-    #hora_salida=models.TimeField()
+    fec_salida = models.DateField()
+    hora_salida = models.TimeField()
+    forma_pago = models.CharField(
+        choices=form_p, max_length=10, default='efectivo')
     tarifa = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    forma_pago = models.CharField(choices=form_p, max_length=10, default='efectivo')
 
     def __str__(self):
-        return '%s %s | %s' % (self.huesped.nombre, self.huesped.apellidos, self.habitacion.numero)
+        return '%s' % (self.huesped)
+
 
 class Reserva(models.Model):
+    tipo_hab = (
+        ('swb', 'Habitación Simple'),
+        ('dwb', 'Habitación doble'),
+        ('mat', 'Habitación triple/departamento'),
+    )
     fecha_reserva = models.DateTimeField(auto_now=True)
-    habitacion =  models.ForeignKey(Habitacion)
+    habitacion = models.ForeignKey(Habitacion)
+    tipo_habitacion = models.CharField(
+        choices=tipo_hab, max_length=5, blank=True, default='swb')
     huesped = models.ForeignKey(Huesped)
-    empresa = models.CharField(max_length=40)
+    empresa = models.ForeignKey(Empresa)
     fecha_llegada = models.DateTimeField()
     fecha_salida = models.DateTimeField()
-    total_dias = models.IntegerField()
     tarifa = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     observacion = models.TextField()
-    
+
     def __str__(self):
-        return '%s | %s %s' % (self.habitacion.numero, self.huesped.nombre, self.huesped.apellidos)
+        return '%s : %s' % (self.habitacion.numero, self.huesped)

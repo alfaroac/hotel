@@ -1,30 +1,65 @@
 {% extends "base.html" %}
-{% block title %}
+{% block titulo %}
 	Acualizar registro
-{% endblock title %}
+{% endblock titulo %}
+{% block estilo %}
+  <style>
+    .border{
+      border: 2px solid;
+      padding: 10px;
+      background: #dddddd;
+      border-radius: 2em;   
 
+      -moz-box-shadow: 0 0 2px black;
+      -webkit-box-shadow: 0 0 2px black;
+      box-shadow: 0 0 2px black;   
+    }
+  </style>
+{% endblock estilo %}
 {% block contenido %}
 <div class="container">
-		<div class="row">
-      <div class="col-sm-4">
-        <h3>{{lista.huesped}}</h3>
-      </div>
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <table class="table table-hover">          
-          <tbody>
-            <tr>               
-              <td>Fecha ingreso</td>
+		            
+        <table align="center">
+          <tr class="row">
+            <td class="col-sm-4">
+              <h2>***Hotel Antares INN***</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur eligendi aspernatur debitis repellat ad. Porro voluptas est totam odio fugiat iste, repudiandae ducimus necessitatibus sed neque. Iste neque, facere mollitia?</p>
+            </td>
+            <td class="col-sm-5"></td>
+            <th class="col-sm-3">
+              <div class="border" align="center">
+                <h4>RUC: 201000023423</h4>
+                <h2 aling="center"><strong>BOLETA</strong></h2>
+                <h4>Nro. 402</h4>
+              </div>
+            </th>
+          </tr>
+        </table><br>
+
+
+
+        <table class="table">          
+          <tbody class="row">
+            <tr> 
+              <th class="col-sm-2">Señor</th> 
+              <td class="col-sm-5">{{lista.huesped.nombre}} {{lista.huesped.apellidos}}</td>
+              <th class="col-sm-1">DNI/RUC</th>
+              <td class="col-sm-1">{{lista.huesped.dni}}</td>
+              <th>Fecha ingreso</th>
               <td>{{lista.fec_salida}}</td>
             </tr> 
-            <tr>               
-              <td>Fecha salida</td>
+            <tr> 
+              <th>Direccion</th>
+              <td>{{lista.huesped.procedencia}}</td>              
+              <td></td>
+              <td></td>
+              <th>Fecha salida</th>
               <td>{{lista.fec_salida}}</td>
             </tr>      
           </tbody>
         </table>
       </div>  
-    </div>
+   
 
 <table class="table table-hover">
     <thead align="center">

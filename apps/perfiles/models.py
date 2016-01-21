@@ -7,29 +7,15 @@ class Rol(models.Model):
     rol = models.CharField(max_length=20, unique=True)
     descripcion = models.TextField()
 
+    class Meta:
+        verbose_name = "Rol"
+        verbose_name_plural = "Roles"
+
     def __str__(self):
         return self.rol
 
 
-class Personal(models.Model):
-    SEX = (
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-    )
-    usuario = models.OneToOneField(User)
-    dni = models.CharField(max_length=8)
-    rol = models.ForeignKey(Rol)
-    sexo = models.CharField(choices=SEX, max_length=255,
-                            blank=True, verbose_name='Género')
-    direccion = models.CharField(max_length=150)
-    telefono = models.CharField(max_length=13)
-    imagen = models.ImageField(upload_to='perfiles')
-
-    def __str__(self):
-        return self.usuario.username
-
-
-class Huesped(models.Model):
+class Persona(models.Model):
     SEX = (
         ('masculino', 'Masculino'),
         ('femenino', 'Femenino'),
@@ -38,14 +24,44 @@ class Huesped(models.Model):
     nombre = models.CharField(max_length=40)
     apellidos = models.CharField(max_length=70)
     dni = models.CharField(max_length=8)
-    fecha_nac = models.DateTimeField(verbose_name='Fecha de Nacimiento')
+    fecha_nac = models.DateField(verbose_name='Fecha de Nacimiento')
     sexo = models.CharField(choices=SEX, max_length=10,
                             blank=True, default='masculino')
     telefono = models.CharField(max_length=13)
-    nacionalidad = models.CharField(max_length=40)
-    procedencia = models.CharField(max_length=40)
-    # imagen = models.ImageField(upload_to='perfiles')
+
+    class Meta:
+        verbose_name = "Persona"
+        verbose_name_plural = "Personas"
 
     def __str__(self):
-        return '%s %s |%s' % (self.nombre, self.apellidos, self.dni)
-    
+        return '%s %s %s' % (self.nombre, self.apellidos, self.dni)
+
+
+class Personal(models.Model):
+
+    usuario = models.OneToOneField(User)
+    persona = models.ForeignKey(Persona)
+    rol = models.ForeignKey(Rol)
+    direccion = models.CharField(max_length=150)
+    estado = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Personal"
+        verbose_name_plural = "Personales"
+
+    def __str__(self):
+        return self.usuario.username
+
+
+class Huesped(models.Model):
+
+    persona = models.ForeignKey(Persona)
+    nacionalidad = models.CharField(max_length=40)
+    procedencia = models.CharField(max_length=40)
+
+    class Meta:
+        verbose_name = "Huesped"
+        verbose_name_plural = "Huespedes"
+
+    def __str__(self):
+        return '%s %s' % (self.persona.nombre, self.persona.apellidos)
