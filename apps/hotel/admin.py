@@ -7,7 +7,14 @@ class RegistroAdmin(admin.ModelAdmin):
     search_fields = ("huesped", "habitacion",)
     list_per_page = 2
 
+
+class ReservaAdmin(admin.ModelAdmin):
+    list_display = ("huesped", "empresa", "fecha_llegada")
+    search_fields = ("huesped", "empresa")
+    list_per_page = 2
+
+
 admin.site.register(Habitacion)
 admin.site.register(Empresa)
 admin.site.register(Registro, RegistroAdmin)
-admin.site.register(Reserva)
+admin.site.register(Reserva, ReservaAdmin)

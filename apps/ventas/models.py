@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from apps.hotel.models import Habitacion
+from apps.perfiles.models import Huesped
 
 
 class Consumo(models.Model):
@@ -27,12 +27,12 @@ class Detalle(models.Model):
         ('TARJETA', 'Tarjeta'),
     )
 
-    habitacion = models.ForeignKey(Habitacion)
+    huesped = models.ForeignKey(Huesped)
     descripcion = models.ForeignKey(Consumo)
     fecha = models.DateTimeField()
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     forma_pago = models.CharField(
         choices=forma_p, max_length=8, blank=True, default='EFECTIVO')
 
     def __str__(self):
-        return '%s  Tipo: %s' % (self.numero, self.tipo)
+        return '%s ' % (self.descripcion)
