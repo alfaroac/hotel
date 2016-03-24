@@ -1,0 +1,8 @@
+ve_hotel
+*.pyc
+*/__pycache__
+*/.ropeproject
+migrations
+db.sqlite3
+.idea
+media

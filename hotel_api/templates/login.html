@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  <style>
+    body {
+      background-color: #eeeeff;
+     background: url("../static/img/interior.jpg") no-repeat fixed center; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    .borde { 
+      border-color: rgba(90,90,255,0.5)  transparent;
+      border-style: solid;
+      border-width: 15px;
+    }
+    .borde2 { 
+      border-color: rgba(0,0,100,0.7)  transparent;
+      border-style: solid;
+      border-width: 7px;
+    }
+    #username {
+      background-color: transparent;
+      color: orange;
+      font-family: "Times New Roman";
+      font-size: 20px;
+    }
+    #password {
+      background-color: transparent;
+      color: orange;
+      font-family: "Times New Roman";
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" align="center"><br><br><br><br><br>
+    <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 borde2">
+    <div class=" borde">
+      <h1>Login</h1>
+      <form class="form-horizontal" method="post" >
+      {% csrf_token %}
+        <div class="form-group">
+          <label class="control-label col-sm-3">Username:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter user">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Password:</label>
+          <div class="col-sm-9"> 
+            <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+          </div>
+        </div>      
+        <div class="form-group"> 
+          <div >
+            <button type="submit" class="btn btn-success btn-block">Enter</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

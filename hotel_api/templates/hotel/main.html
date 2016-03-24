@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block titulo %}
+    Bienvenidos al Sistema Hotelero
+{% endblock titulo %}
+{% block estilos %}
+{% endblock estilos %}
+{% block contenido %}
+{% spaceless %}
+    <div class="page-header">
+        <h2>
+            <strong>
+                Bienvenido al sistema "Antahuara INN SAC"
+            </strong>
+            <a href="" class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-plus">Nuevo registro</span>
+            </a>
+        </h2>
+    </div><!-- page-header -->
+
+
+    {% endspaceless %}
+    {# {% lorem 3 p random %} #}
+        <div class="row">
+      {% for room in lista %} 
+            <div class="col-md-4">
+                <a href="#" class="btn">
+                {% ifequal  room.estado 'libre' %} 
+                <div class="card card-inverse card-primary text-xs-center btn-warning">
+                {% endifequal %}
+                {% ifequal  room.estado 'reservado' %} 
+                <div class="card card-inverse text-xs-center btn-info">
+                {% endifequal %}
+                {% ifequal  room.estado 'ocupado' %} 
+                <div class="card card-inverse text-xs-center btn-success">
+                {% endifequal %}
+                {% ifequal  room.estado 'limpiar' %} 
+                <div class="card card-inverse text-xs-center btn-danger">
+                
+                {% endifequal %}
+                  <div >
+                    <span class="glyphicon glyphicon-star" ></span>
+                    <span class="glyphicon glyphicon-star" ></span>
+                    <span class="glyphicon glyphicon-star" ></span>
+                    <span class="glyphicon glyphicon-star" ></span>
+                    <span class="glyphicon glyphicon-star" ></span> 
+                      <h1>{{room.numero}}</h1>
+                      <div >Piso: {{room.piso}} | {{room.tipo | upper}}</div>                      
+                      <footer><small>Habitación</small><cite title="Source Title"><strong>{{room.estado}}</strong> </cite></footer>
+                      <a href="#" class="btn btn-primary pull-right">Go somewhere <span class="glyphicon glyphicon-chevron-right" ></span> </a>
+                    
+                  </div>
+                </div>
+                </a>                    
+            </div>        
+      {% endfor %}
+        </div>
+ 
+
+{% endblock contenido %}
