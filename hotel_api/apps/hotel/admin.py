@@ -9,14 +9,6 @@ from .models.Huesped import Huesped
 from .models.Producto import Producto
 from .models.Sucursal import Sucursal
 
-
-# class RegistroAdmin(admin.ModelAdmin):
-#     list_display = ("huesped", "habitacion", "empresa")
-#     search_fields = ("huesped", "habitacion",)
-#     list_per_page = 2
-
-# admin.site.register(Registro, RegistroAdmin)
-
 admin.site.register(Consumo)
 admin.site.register(Detalle)
 admin.site.register(Empleado)
