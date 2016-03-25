@@ -1,4 +1,23 @@
-<form method="post">{% csrf_token %}
-    {{form.as_p}}
+<form id="tipoform">{% csrf_token %}
+    <input type="TEXT" name="" id="tipo" value="" placeholder="Tipo de usuario">
+    <input type="TEXT" name="" id="descripcion" value="" placeholder="Descripcion">
     <input type="SUBMIT" name="" value="Guardar">
 </form>
+
+<script>
+$(document).on('submit','#tipoform' ,function(e){
+    e.preventDefault();
+    $.ajax({
+        type:'POST',
+        url:'/perfil/tipo/add/',
+        data:{
+            tipo:$('#tipo').val(),
+            descripcion:$('#descripcion').val(),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function(){                                               
+           alert("Registro satisfactorio!!!");
+        },
+    });
+});
+</script>

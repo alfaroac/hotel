@@ -6,12 +6,21 @@ from .forms import *
 from .models import *
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, FormView
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
-def saludo(request):
-    return render(request, 'saludo.html')
 
-def saludo2(request):
-    return render(request, 'saludo2.html')
+def creartipo(request):
+    if request.method == 'POST':
+        tipo = request.POST['tipo']
+        descripcion = request.POST['descripcion']
+
+        TipoUsuario.objects.create(
+            tipo = tipo,
+            descripcion = descripcion,
+        )
+
+        return HttpResponse('')
+
 
 class TipoUsuarioView(ListView):
 

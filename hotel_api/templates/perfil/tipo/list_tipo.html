@@ -2,6 +2,7 @@
     <div class="panel-heading" align="center">
         <h4>Tipo de usuario</h4>
         <!-- <strong>Tipo de usuarios</strong> -->
+        <a href="#" id="nuevotipo">Nuevo</a>
     </div>
     <div class="panel-body">
         <table cellspacing="0" class="table">
@@ -27,3 +28,12 @@
         </table>    
     </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $("#nuevotipo").click(function(){
+        console.log( "You clicked a in tipo!" );
+        $("#contenido").load("/perfil/tipo/crear/");
+    });
+});
+</script>

@@ -27,7 +27,8 @@ urlpatterns = [
 
     url(r'^registrar$', RegistrarUsuario.as_view(), name='registrar_usuario'),
 
-    url(r'^saludo2/$',CreateTipoUsuario.as_view()),
+    url(r'^tipo/add/$', creartipo),
+    url(r'^tipo/crear/$',CreateTipoUsuario.as_view()),
     # url(r'^upload', upload, name = 'upload')
     # url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT, }),
 ]
