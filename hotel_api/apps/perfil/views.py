@@ -7,7 +7,12 @@ from .models import *
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, FormView
 from django.contrib.auth.models import User
 
-# Create your views here.
+def saludo(request):
+    return render(request, 'saludo.html')
+
+def saludo2(request):
+    return render(request, 'saludo2.html')
+
 class TipoUsuarioView(ListView):
 
     template_name = "perfil/tipo/list_tipo.html"
@@ -18,9 +23,10 @@ class TipoUsuarioView(ListView):
 class CreateTipoUsuario(CreateView):
     form_class = TipoUsuarioForm
     template_name = "perfil/tipo/add_tipo.html"
-    success_url = reverse_lazy('perfiles_app:tipo')
+    success_url = reverse_lazy('perfil_app:tipo')
 
     def form_valid(self, form):
+        print ("Registro satisfactorio")
         return super(CreateTipoUsuario, self).form_valid(form)
 
 

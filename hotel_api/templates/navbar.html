@@ -1,34 +1,4 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>
-	{% block title %}{% endblock %}
-	</title>
-	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-  <script src="{% static "js/jquery-1.11.3.js" %}"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
-  <script type="text/javascript">
-$(document).ready(function(){
-    $("#saludo").click(function(){
-     $("#contenido").load("/perfil/saludo/");
-    });
-    $("#saludo2").click(function(){
-     $("#contenido").load("/perfil/saludo2/");
-    });
-});
-  </script>
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-    {% block css %}    
-    {% endblock %}
-</head>
-<body>
 <nav class="navbar navbar-inverse" role="navigation">
-  <!-- El logotipo y el icono que despliega el menú se agrupan
-       para mostrarlos mejor en los dispositivos móviles -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse"
             data-target=".navbar-ex1-collapse">
@@ -86,32 +56,3 @@ $(document).ready(function(){
     </ul>
   </div>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10">
-            <div class="panel">
-                <div class="pane-heading">Administrar</div>
-                <div class="panel-body">
-                {% block content %}	
-                {% endblock %}
-                </div>
-            </div>
-        <!-- <div id="contenido"></div> -->
-        </div>
-        <div class="col-md-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">Admin</div>
-                <div class="panel-body">
-                    <ul>
-                        <li><a href="#" id="saludo">saludo</a></li>
-                        <li><a href="#" id="saludo2">Saludo2</a></li>
-                        <li><a href="#">Link</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-</html>

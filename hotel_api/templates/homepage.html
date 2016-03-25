@@ -1,0 +1,12 @@
+<div class="panel panel-info">
+    <div class="panel-heading" align="center">
+        <h4><strong> Homepage</strong></div>
+    </div>
+    <div class="panel-body">
+        {% if user.is_authenticated %}
+        <h2>Bienvenido {{user}}</h2>
+        {% else %}
+        <h2>Login please</h2>
+        {% endif %}
+    </div>
+</div>

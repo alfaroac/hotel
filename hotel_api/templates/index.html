@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>
+	{% block title %}{% endblock %}
+	</title>
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <script src="{% static "js/jquery-1.11.3.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <!-- <script src="{% static "js/control.js" %}"></script> -->
+  {% include 'control.html' %}
+</head>
+<body>
+{% include 'navbar.html'%}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div id="contenido"></div>
+        </div>
+        <div class="col-md-2">
+            {% include 'admin.html' %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

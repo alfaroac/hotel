@@ -1,0 +1,29 @@
+<div class="panel panel-info">
+    <div class="panel-heading" align="center">
+        <h4>Tipo de usuario</h4>
+        <!-- <strong>Tipo de usuarios</strong> -->
+    </div>
+    <div class="panel-body">
+        <table cellspacing="0" class="table">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for lista in listas %}
+            <tr>
+                <td>{{lista.tipo}}</td>
+                <td>{{lista.descripcion}}</td>
+                <td>
+                    <a href="#">Editar</a>
+                    <a href="#">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>    
+    </div>
+</div>
