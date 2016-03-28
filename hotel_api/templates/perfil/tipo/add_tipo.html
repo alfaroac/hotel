@@ -16,7 +16,8 @@ $(document).on('submit','#tipoform' ,function(e){
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
         },
         success:function(){                                               
-           alert("Registro satisfactorio!!!");
+            alert("Registro satisfactorio!!!");
+            $("#contenido").load("{% url 'perfil_app:tipo' %}");
         },
     });
 });

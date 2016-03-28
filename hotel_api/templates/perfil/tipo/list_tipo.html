@@ -1,11 +1,17 @@
 <div class="panel panel-info">
     <div class="panel-heading" align="center">
-        <h4>Tipo de usuario</h4>
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Tipo de usuario</h4>
+            </div>
+            <div class="col-md-3">
+                <a href="#" id="nuevotipo" class="btn btn-default pull-right">Nuevo</a>
+            </div>
+        </div>
         <!-- <strong>Tipo de usuarios</strong> -->
-        <a href="#" id="nuevotipo">Nuevo</a>
     </div>
     <div class="panel-body">
-        <table cellspacing="0" class="table">
+        <table cellspacing="0" class="table table-hover" id="tabla_productos">
             <thead>
             <tr>
                 <th>Nombre</th>
@@ -15,12 +21,12 @@
             </thead>
             <tbody>
             {% for lista in listas %}
-            <tr>
+            <tr id="tr{{p.id}}">
                 <td>{{lista.tipo}}</td>
                 <td>{{lista.descripcion}}</td>
                 <td>
-                    <a href="#">Editar</a>
-                    <a href="#">Eliminar</a>
+                    <a href="#" >Editar</a>
+                    <button value="{{lista.id}}" class="btn btn-danger btnEliminar"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
             </tr>
             {% endfor %}
@@ -29,11 +35,30 @@
     </div>
 </div>
 
+
 <script>
 $(document).ready(function(){
     $("#nuevotipo").click(function(){
-        console.log( "You clicked a in tipo!" );
+        console.log( "You clicked a in nuevo tipo!" );
         $("#contenido").load("/perfil/tipo/crear/");
+    });
+    $(".btnEliminar").click(function(){
+        var id = $(this).val();
+        var r = confirm("Seguro de querer elimnar?"+id);
+        if (r==true){
+        $.ajax({
+            data:{'id':id},
+            url:"perfil/tipodel/",
+            type:'get',
+            success:function(){                                               
+            alert("Objeto eliminado!!!");
+            $("#contenido").load("{% url 'perfil_app:tipo' %}");
+            },
+        });
+        
+        }else{
+            $("#contenido").load("{% url 'perfil_app:tipo' %}");
+        }
     });
 });
 </script>

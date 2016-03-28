@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.template import RequestContext
 from .forms import *
 from .models import *
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView, FormView
+from django.views.generic import TemplateView, CreateView, ListView, DeleteView, UpdateView, DetailView, FormView
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
+from django.http import HttpResponseRedirect, HttpResponse
+import django, json as simplejson
 
 
 def creartipo(request):
@@ -21,66 +24,25 @@ def creartipo(request):
 
         return HttpResponse('')
 
-
-class TipoUsuarioView(ListView):
-
+def list_tipo(request):
+    listas = TipoUsuario.objects.all()
+    ctx = {'listas':listas}
     template_name = "perfil/tipo/list_tipo.html"
-    model = TipoUsuario
-    context_object_name = 'listas'
+    return render(request, template_name, ctx)
 
-
-class CreateTipoUsuario(CreateView):
-    form_class = TipoUsuarioForm
+class CreateTipo(CreateView):
     template_name = "perfil/tipo/add_tipo.html"
-    success_url = reverse_lazy('perfil_app:tipo')
-
-    def form_valid(self, form):
-        print ("Registro satisfactorio")
-        return super(CreateTipoUsuario, self).form_valid(form)
-
-
-class EditTipoUsuario(UpdateView):
     form_class = TipoUsuarioForm
-    template_name = "perfil/tipo/upd_tipo.html"
-    model = TipoUsuario
-    success_url = reverse_lazy('perfiles_app:tipo')
 
 
-class DeleteTipoUsuario(DeleteView):
-    template_name = "perfil/tipo/del_tipo.html"
-    model = TipoUsuario
-    success_url = reverse_lazy('perfiles_app:tipo')
-    context_object_name = 'object'
+def tipo_del(request):
 
-
-class PerfilList(ListView):
-    template_name = "perfil/list_perfil.html"
-    model = Perfil
-
-
-class PerfilCreate(CreateView):
-    template_name = "perfil/add_perfil.html"
-    form_class = PerfilForm
-    success_url = reverse_lazy('index')
-
-
-class PerfilEdit(UpdateView):
-    form_class = PerfilForm
-    template_name = "perfil/upd_perfil.html"
-    model = Perfil
-    success_url = reverse_lazy('perfiles_app:list_perfil')
-
-
-class PerfilDelete(DeleteView):
-    template_name = "perfil/del_perfil.html"
-    model = Perfil
-    success_url = reverse_lazy('perfiles_app:list_perfil')
-    context_object_name = 'object'
-
-
-class PerfilDetail(DetailView):
-    template_name = "perfil/det_perfil.html"
-    model = Perfil
+    if request.method == 'GET':
+        id_obj = request.GET['id']
+        tipo = TipoUsuario.objects.get(pk=id_obj)
+        tipo.delete()
+        print ("%s eliminado")%tipo
+        return HttpResponse('')
 
 
 def perfil_detail(request):

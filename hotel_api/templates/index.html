@@ -6,12 +6,12 @@
 	<title>
 	{% block title %}{% endblock %}
 	</title>
-	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+
   <script src="{% static "js/jquery-1.11.3.js" %}"></script>
   <script src="{% static "js/bootstrap.min.js" %}"></script>
-  <!-- <script src="{% static "js/control.js" %}"></script> -->
-  {% include 'control.html' %}
+  <!-- <script src="{% static "jquery.form.min.js" %}"></script> -->
+  <!-- <script src="{% static "demo.js" %}"></script> -->
 </head>
 <body>
 {% include 'navbar.html'%}
@@ -26,5 +26,14 @@
     </div>
 </div>
 
+<script>
+$(document).ready(function(){
+    $("#contenido").load("{% url 'homepage' %}");
+    $("#tipuser").click(function(){
+        $("#contenido").load("{% url 'perfil_app:tipo' %}");
+         console.log( "Hiciste click en listar tipo de usuarios" );
+    });
+});
+</script>
 </body>
 </html>
