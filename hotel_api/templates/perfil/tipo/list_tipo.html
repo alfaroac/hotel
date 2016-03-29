@@ -1,11 +1,30 @@
-<div class="panel panel-info">
+<div id="addform">
+    <div class="panel panel-info">
+        <div class="panel-heading" align="center">Agregar nuevo tipo de usuario</div>
+        <div class="panel-body">
+                <form id="tipoform">{% csrf_token %}
+                    <div class="form-group">
+                      <label for="tipo">Tipo de usuario:</label>
+                      <input type="text" class="form-control" id="tipo" placeholder="Tipo de usuario" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="descripcion">Tipo de usuario:</label>
+                      <input type="text" class="form-control" id="descripcion"
+                      placeholder="Ingrese una descripcion" required>
+                    </div>
+                    <button type="submit" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
+                </form>                
+        </div>
+    </div>
+</div>
+<div class="panel panel-info" id="listpanel">
     <div class="panel-heading" align="center">
         <div class="row">
             <div class="col-md-9">
                 <h4>Tipo de usuario</h4>
             </div>
             <div class="col-md-3">
-                <a href="#" id="nuevotipo" class="btn btn-default pull-right">Nuevo</a>
+                <a href="#" id="addtipo" class="btn btn-info pull-right"> Nuevo registro</a>
             </div>
         </div>
         <!-- <strong>Tipo de usuarios</strong> -->
@@ -38,20 +57,16 @@
 
 <script>
 $(document).ready(function(){
-    $("#nuevotipo").click(function(){
-        console.log( "You clicked a in nuevo tipo!" );
-        $("#contenido").load("/perfil/tipo/crear/");
-    });
+    $("#addform").hide();
     $(".btnEliminar").click(function(){
         var id = $(this).val();
-        var r = confirm("Seguro de querer elimnar?"+id);
+        var r = confirm("Seguro de eliminar?"+id);
         if (r==true){
         $.ajax({
             data:{'id':id},
             url:"perfil/tipodel/",
             type:'get',
             success:function(){                                               
-            alert("Objeto eliminado!!!");
             $("#contenido").load("{% url 'perfil_app:tipo' %}");
             },
         });
@@ -59,6 +74,27 @@ $(document).ready(function(){
         }else{
             $("#contenido").load("{% url 'perfil_app:tipo' %}");
         }
+    });
+    $("#addtipo").on('click', function(){
+        $("#listpanel").hide();
+        $("#addform").show();
+    });
+    $('#tipoform').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'/perfil/tipo/add/',
+            data:{
+                tipo:$('#tipo').val(),
+                descripcion:$('#descripcion').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){                                               
+                alert("Registro satisfactorio!!!");
+                $("#addform").hide(1000);
+                $("#contenido").load("{% url 'perfil_app:tipo' %}");
+            },
+        });
     });
 });
 </script>

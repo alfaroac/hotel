@@ -4,9 +4,7 @@ from .views import *
 urlpatterns = [
 
 	url(r'^tipo$', list_tipo , name='tipo'),
-	# url(r'^tipo$',TipoUsuarioView.as_view(), name='tipo'),
     url(r'^tipo/add/$', creartipo, name='add_tipo'),
-    url(r'^tipo/crear/$', CreateTipo.as_view()),
     url(r'^tipodel/$', tipo_del),
 
     url(r'^detalle_perfil$', perfil_detail, name= 'detail_perfil'),

@@ -30,11 +30,6 @@ def list_tipo(request):
     template_name = "perfil/tipo/list_tipo.html"
     return render(request, template_name, ctx)
 
-class CreateTipo(CreateView):
-    template_name = "perfil/tipo/add_tipo.html"
-    form_class = TipoUsuarioForm
-
-
 def tipo_del(request):
 
     if request.method == 'GET':
