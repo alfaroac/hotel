@@ -3,9 +3,11 @@ from .views import *
 
 urlpatterns = [
 
-	url(r'^tipo$', list_tipo , name='tipo'),
-    url(r'^tipo/add/$', creartipo, name='add_tipo'),
-    url(r'^tipodel/$', tipo_del),
+	url(r'^listar_tipo$', listar_tipo , name='tipo'),
+    url(r'^crear_tipo/$', crear_tipo, name='add_tipo'),
+    url(r'^eliminar_tipo/$', eliminar_tipo),
+    url(r'^buscar_tipo/$', buscar_tipo),
+    url(r'^actualizar_tipo/$', actualizar_tipo),
 
     url(r'^detalle_perfil$', perfil_detail, name= 'detail_perfil'),
     url(r'^edit_perfil$', perfil_edit, name= 'edit_perfil'),

@@ -1,7 +1,9 @@
 <div id="addform">
     <div class="panel panel-info">
-        <div class="panel-heading" align="center">Agregar nuevo tipo de usuario</div>
+        <div id="crear_tit"class="panel-heading" align="center">Agregar nuevo tipo de usuario</div>
+        <div id="actualizar_tit" class="panel-heading" align="center">Actuializando registro</div>
         <div class="panel-body">
+            <input type="hidden" name="" id="mid" value="">
                 <form id="tipoform">{% csrf_token %}
                     <div class="form-group">
                       <label for="tipo">Tipo de usuario:</label>
@@ -12,7 +14,8 @@
                       <input type="text" class="form-control" id="descripcion"
                       placeholder="Ingrese una descripcion" required>
                     </div>
-                    <button type="submit" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
+                    <button id="btnRegistrar" type="button" class="btn btn-success pull-right">Registrar<span class="glyphicon glyphicon-save"></span></button>
+                    <button id="btnActualizar" class="btn btn-info pull-right">Actualizar<span class="glyphicon glyphicon-save"></span></button>
                 </form>                
         </div>
     </div>
@@ -40,11 +43,11 @@
             </thead>
             <tbody>
             {% for lista in listas %}
-            <tr id="tr{{p.id}}">
+            <tr id="tr{{p.id}}" style="cursor:pointer" class="datatable">
                 <td>{{lista.tipo}}</td>
                 <td>{{lista.descripcion}}</td>
                 <td>
-                    <a href="#" >Editar</a>
+                    <button value="{{lista.id}}" class="btn btn-info btnEditar"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button value="{{lista.id}}" class="btn btn-danger btnEliminar"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
             </tr>
@@ -54,9 +57,11 @@
     </div>
 </div>
 
-
 <script>
 $(document).ready(function(){
+    function listar(){
+       $("#contenido").load("{% url 'perfil_app:tipo' %}");
+    }
     $("#addform").hide();
     $(".btnEliminar").click(function(){
         var id = $(this).val();
@@ -64,35 +69,75 @@ $(document).ready(function(){
         if (r==true){
         $.ajax({
             data:{'id':id},
-            url:"perfil/tipodel/",
+            url:"perfil/eliminar_tipo/",
             type:'get',
             success:function(){                                               
-            $("#contenido").load("{% url 'perfil_app:tipo' %}");
+                listar();
             },
         });
-        
         }else{
-            $("#contenido").load("{% url 'perfil_app:tipo' %}");
         }
     });
     $("#addtipo").on('click', function(){
         $("#listpanel").hide();
         $("#addform").show();
+        $("#btnActualizar").hide();
+        $("#actualizar_tit").hide();
     });
-    $('#tipoform').on('submit', function(e){
+    $('#btnRegistrar').on('click', function(e){
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'/perfil/tipo/add/',
+            url:'/perfil/crear_tipo/',
             data:{
                 tipo:$('#tipo').val(),
                 descripcion:$('#descripcion').val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
             },
             success:function(){                                               
-                alert("Registro satisfactorio!!!");
-                $("#addform").hide(1000);
-                $("#contenido").load("{% url 'perfil_app:tipo' %}");
+                $("#tipoform")[0].reset();
+                alert("Registro satisfactorio");
+                $("#addform").hide();
+                listar();
+            },
+        });
+    });
+    $(".btnEditar").on('click', function(){
+        var id = $(this).val();
+        $.ajax({
+            data:{'id':id},
+            url:"perfil/buscar_tipo/",
+            type:'get',
+            success:function(data){                                               
+                $("#listpanel").hide();
+                $("#addform").show();
+                $("#btnRegistrar").hide();
+                $("#crear_tit").hide();
+                $("#mid").val(id);
+                for(var i=0; i<data.length; i++){
+                    $("#tipo").val(data[i].fields.tipo);
+                    $("#descripcion").val(data[i].fields.descripcion);
+                }
+            },
+        });
+    });
+    $("#btnActualizar").on('click', function(e){
+        e.preventDefault();
+        var id = $("#mid").val();
+        $.ajax({
+            type:'POST',
+            url:'/perfil/actualizar_tipo/',
+            data:{
+                id_tipo:id,
+                tipo:$('#tipo').val(),
+                descripcion:$('#descripcion').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){                                               
+                $("#tipoform")[0].reset();
+                alert("Actualizacion correcta");
+                $("#addform").hide();
+                listar();
             },
         });
     });

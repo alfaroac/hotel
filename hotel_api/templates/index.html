@@ -10,8 +10,6 @@
 
   <script src="{% static "js/jquery-1.11.3.js" %}"></script>
   <script src="{% static "js/bootstrap.min.js" %}"></script>
-  <!-- <script src="{% static "jquery.form.min.js" %}"></script> -->
-  <!-- <script src="{% static "demo.js" %}"></script> -->
 </head>
 <body>
 {% include 'navbar.html'%}
@@ -29,9 +27,12 @@
 <script>
 $(document).ready(function(){
     $("#contenido").load("{% url 'homepage' %}");
-    $("#tipuser").click(function(){
+    function listar(){
         $("#contenido").load("{% url 'perfil_app:tipo' %}");
-         console.log( "Hiciste click en listar tipo de usuarios" );
+    }
+    $("#tipuser").click(function(){
+        listar();
+        console.log( "Hiciste click en listar tipo de usuarios" );
     });
 });
 </script>

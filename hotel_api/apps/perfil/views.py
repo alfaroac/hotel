@@ -9,10 +9,18 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core import serializers
 import django, json as simplejson
 
 
-def creartipo(request):
+
+def listar_tipo(request):
+    listas = TipoUsuario.objects.all()
+    ctx = {'listas':listas}
+    template_name = "perfil/tipousuario.html"
+    return render(request, template_name, ctx)
+
+def crear_tipo(request):
     if request.method == 'POST':
         tipo = request.POST['tipo']
         descripcion = request.POST['descripcion']
@@ -24,13 +32,7 @@ def creartipo(request):
 
         return HttpResponse('')
 
-def list_tipo(request):
-    listas = TipoUsuario.objects.all()
-    ctx = {'listas':listas}
-    template_name = "perfil/tipo/list_tipo.html"
-    return render(request, template_name, ctx)
-
-def tipo_del(request):
+def eliminar_tipo(request):
 
     if request.method == 'GET':
         id_obj = request.GET['id']
@@ -39,6 +41,28 @@ def tipo_del(request):
         print ("%s eliminado")%tipo
         return HttpResponse('')
 
+
+def buscar_tipo(request):
+
+    if request.method == 'GET':
+        id_obj = request.GET['id']
+        tipo = TipoUsuario.objects.filter(pk=id_obj)
+        data = serializers.serialize('json', tipo,
+                                     fields=('tipo','descripcion'))
+        return HttpResponse(data, content_type='application/json')
+
+def actualizar_tipo(request):
+    if request.method == 'POST':
+
+        id_tipo = request.POST['id_tipo']
+        tipo = request.POST['tipo']
+        descripcion = request.POST['descripcion']
+        TipoUsuario.objects.filter(pk=id_tipo).update(
+            tipo = tipo,
+            descripcion = descripcion,
+        )
+        return HttpResponse('')
+# modelo perfil
 
 def perfil_detail(request):
     user = request.user
