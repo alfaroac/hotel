@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>
+	{% block title %}{% endblock %}
+	</title>
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
+  {% block css %}{% endblock %}
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+</head>
+<body>
+{% include 'navbar.html'%}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-info">
+                <div class="panel-heading" align="center">{% block titulo %}{% endblock %}</div>
+                <div class="panel-body container">
+                {% block contenido %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            {% include 'admin.html' %}
+        </div>
+    </div>
+</div>
+{% block js %}{% endblock %}
+</body>
+</html>

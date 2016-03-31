@@ -1,40 +1,7 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>
-	{% block title %}{% endblock %}
-	</title>
-  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
-
-  <script src="{% static "js/jquery-1.11.3.js" %}"></script>
-  <script src="{% static "js/bootstrap.min.js" %}"></script>
-</head>
-<body>
-{% include 'navbar.html'%}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10">
-            <div id="contenido"></div>
-        </div>
-        <div class="col-md-2">
-            {% include 'admin.html' %}
-        </div>
-    </div>
-</div>
-
-<script>
-$(document).ready(function(){
-    $("#contenido").load("{% url 'homepage' %}");
-    function listar(){
-        $("#contenido").load("{% url 'perfil_app:tipo' %}");
-    }
-    $("#tipuser").click(function(){
-        listar();
-        console.log( "Hiciste click en listar tipo de usuarios" );
-    });
-});
-</script>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block titulo %}
+This is a title
+{% endblock %}
+{% block contenido %}
+Wellcome {{user}}
+{% endblock %}
